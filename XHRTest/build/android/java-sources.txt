@@ -1,0 +1,8 @@
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/android/support/v7/appcompat/R.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/ApplicationStylesheet.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/AssetCryptImpl.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/R.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/XhrtestActivity.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/XhrtestAppInfo.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/com/xhrtest/XhrtestApplication.java"
+"C:/Users/Josh/Documents/Titanium_Studio_Workspace/XHRTest/build/android/gen/ti/modules/titanium/ui/R.java"
