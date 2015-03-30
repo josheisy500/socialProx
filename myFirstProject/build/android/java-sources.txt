@@ -1,8 +1,0 @@
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/android/support/v7/appcompat/R.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/ApplicationStylesheet.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/AssetCryptImpl.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/MyfirstprojectActivity.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/MyfirstprojectAppInfo.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/MyfirstprojectApplication.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/com/myfirstproject/com/R.java"
-"C:/Users/Josh/Documents/Titanium_Studio_Workspace/myFirstProject/build/android/gen/ti/modules/titanium/ui/R.java"
