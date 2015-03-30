@@ -1,4 +1,3 @@
-package com.joshua.databaseAccess;
 
 import java.io.IOException;
 
