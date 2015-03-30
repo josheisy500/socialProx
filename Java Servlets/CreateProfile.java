@@ -14,7 +14,7 @@ import java.sql.*;
  * Servlet implementation class CreateProfile
  */
 
-@WebServlet(description = "Servlet to allow mobile client to create profile (stored on MySQL Database)", urlPatterns = { "/CreateProfile" }
+@WebServlet(description = "Servlet to allow mobile client to create profile (stored on MySQL Database)", urlPatterns = { "/CreateProfile" })
 public class CreateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
