@@ -1,3 +1,4 @@
+package com.joshua.databaseAccess;
 
 import java.io.IOException;
 
@@ -76,6 +77,27 @@ public class CreateProfile extends HttpServlet {
 		String longitude = request.getParameter("long");
 		String latitude = request.getParameter("lat");
 		String currentInterest = request.getParameter("crntItst");
+		String title = "Profile Results";
+		
+		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 "
+				+ "transitional//en\">\n";
+		out.println(docType + "<html>\n" + "<head><title>" + title
+				+ "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
+				+ "<h1 align=\"center\">" + title + "</h1>\n" + "<ul>\n" +
+
+				"  <li><b>Anonymous User Name</b>: "
+				+ request.getParameter("anonUsrNm") + "\n" +
+
+				"  <li><b>Longitude</b>: " + request.getParameter("long")
+				+ "\n" +
+
+				"  <li><b>Latitude</b>: " + request.getParameter("lat")
+				+ "\n" +
+
+				"  <li><b>Current Interest</b>: "
+				+ request.getParameter("crntItst")
+
+				+ "</body></html>");
 		
 		try {
 			// Register JDBC driver
