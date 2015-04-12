@@ -1,5 +1,3 @@
-package com.joshua.databaseAccess;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -44,21 +42,12 @@ public class CreateProfile extends HttpServlet {
 
 		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 "
 				+ "transitional//en\">\n";
-		out.println(docType + "<html>\n" + "<head><title>" + title
+		out.println(docType + "<html>\n" + "<head><meta name=viewport content=width=device-width; initial-scale=1.0 /><title>" + title
 				+ "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
 				+ "<h1 align=\"center\">" + title + "</h1>\n" + "<ul>\n" +
 
-				"  <li><b>Anonymous User Name</b>: "
-				+ request.getParameter("anonUsrNm") + "\n" +
-
-				"  <li><b>Longitude</b>: " + request.getParameter("long")
-				+ "\n" +
-
-				"  <li><b>Latitude</b>: " + request.getParameter("lat")
-				+ "\n" +
-
-				"  <li><b>Current Interest</b>: "
-				+ request.getParameter("crntItst")
+				"  <li><b>Welcome</b>: "
+				+ request.getParameter("anonUsrNm") + "\n" 
 
 				+ "</body></html>");
 
@@ -77,26 +66,24 @@ public class CreateProfile extends HttpServlet {
 		String longitude = request.getParameter("long");
 		String latitude = request.getParameter("lat");
 		String currentInterest = request.getParameter("crntItst");
-		String title = "Profile Results";
+		String title = "Profile Created";
 		
-		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 "
+		String docType = 
+				"<!doctype html public \"-//w3c//dtd html 4.0 "
 				+ "transitional//en\">\n";
-		out.println(docType + "<html>\n" + "<head><title>" + title
+				out.println
+				(docType + 
+				"<html>\n" + 
+					"<head><meta name=viewport content=width=device-width; initial-scale=1.0 /><title>" + title
+				
 				+ "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
 				+ "<h1 align=\"center\">" + title + "</h1>\n" + "<ul>\n" +
 
-				"  <li><b>Anonymous User Name</b>: "
-				+ request.getParameter("anonUsrNm") + "\n" +
-
-				"  <li><b>Longitude</b>: " + request.getParameter("long")
-				+ "\n" +
-
-				"  <li><b>Latitude</b>: " + request.getParameter("lat")
-				+ "\n" +
-
-				"  <li><b>Current Interest</b>: "
-				+ request.getParameter("crntItst")
-
+				"  <li><b>Welcome</b>: "
+				+ request.getParameter("anonUsrNm") + "\n" 
+				
+				+ " <li><b>Please use the tabs above to navigate through the application</b>: " 
+				
 				+ "</body></html>");
 		
 		try {
