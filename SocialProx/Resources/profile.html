@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+		<script>
+			Ti.App.addEventListener("app:fromTitaniumLat", function(e) {
+				var lat = e.latitude;
+				document.getElementById("lat").value = lat;
+			});
+			Ti.App.addEventListener("app:fromTitaniumLong", function(e) {
+				//alert(e.longitude);
+				var longit = e.longitude;
+				document.getElementById("long").value = longit;
+			});
+
+		</script>
+	</head>
+
+	<body background="bg.jpg">
+		<div class="container">
+			<div align="center" style="color: #FF0000">
+				<h2><b>Create Profile</b></h2>
+			</div>
+			<form role="form" action="http:130.206.127.43:8080/CreateProfile" method="post">
+
+				<div class="form-group">
+					<label for="name" style="color: #FF0000">Anonymous User Name:</label>
+					<input type="text" class="form-control" id="anonUsrNm" placeholder="user???" name="anonUsrNm" required>
+				</div>
+
+				<div class="form-group" >
+					<label for="long" style="color: #FF0000">Longitude:</label>
+					<input type="number" class="form-control" id="long" step="any" name="long" readonly>
+				</div>
+
+				<div class="form-group" >
+					<label for="lat" style="color: #FF0000">Latitude:</label>
+					<input type="number" class="form-control" id="lat" step="any" name="lat" readonly>
+				</div>
+
+				<br />
+				<label for="crnInt" style="color: #FF0000">Current Interest:</label>
+				<select id="crntItst" name="crntItst">
+					<optgroup label="-Please Select Your Current Interest-">
+						<option value="Football" >Football</option>
+						<option value="Rugby">Rugby</option>
+						<option value="Swimming" >Swimming</option>
+						<option value="Restaurants" >Restaurants</option>
+						<option value="Bars" >Bars</option>
+						<option value="Music" >Music</option>
+					</optgroup>
+				</select>
+		</div>
+		<br />
+		<div align="center">
+			<button type="submit" class="btn btn-default" style="color: #FF0000">
+				Submit
+			</button>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
+</html>
