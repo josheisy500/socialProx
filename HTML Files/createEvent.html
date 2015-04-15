@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+
+<title>Create Event</title>
+
+<style> 
+div.style {
+	position: absolute;
+	left: 700px;
+	top: 100px;
+    border: 20px solid #FF0000;
+    padding: 10px 40px; 
+    background: #dddddd;
+    width: 300px;
+    border-radius: 50px;
+}
+</style>
+
+</head>
+
+<body background="bg.jpg">
+
+<script>
+
+var x = document.getElementById("demo");
+var longi = document.getElementById("long");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById("long").value = position.coords.longitude;
+    document.getElementById("lat").value = position.coords.latitude;
+}
+
+</script>
+
+	<div class="style" align="center" style="color: #FF0000">
+	
+	
+	<form method="post" action="createEvent" enctype="multipart/form-data">
+	 <a href="eventOrg_Logout">Logout</a> |
+	  <a href="MainMenu.html">Main Menu</a>
+	
+		<h2 style="color: #FF0000">Create Event</h2>
+		
+		<label for="name" style="color: #FF0000">Event Name:</label>
+		<input type="text" name="eventName" required/><br />
+		
+		<label for="date" style="color: #FF0000">Date of Event:</label>
+		<input type="date" name="date" min="2015-04-23" max="2016-04-14" placeholder="DD-MM-YYYY" required><br />
+				
+		<label for="name" style="color: #FF0000">Longitude:</label>
+		<input type="number" id="long" name="long"  step="any"   required/><br /> 
+		
+		<label for="name" style="color: #FF0000">Latitude:</label>
+		<input type="number" id="lat" name="lat" step="any"   required/><br />
+		
+		<br><button type="button" onclick="getLocation()">Get Current Coordinates</button><br/>
+		
+		<br><select name="eventType" id="eventType">
+		<optgroup label="Event Type"></optgroup>
+			<option value="sports">Sports</option>
+  			<option value="food_drink">Food and Drink</option>
+  			<option value="music">Music</option>
+		</select> <br />
+		
+		
+		<br><label for="photo" style="color: #FF0000">Event Logo:</label>
+		<br><input type="file" name="photo" size="50" required/>
+		
+		
+		<br><button type="submit" class="btn btn-default" style="color: #FF0000">
+			Create Event
+		</button>
+		
+	</form>
+	
+	<br/>
+		
+		
+</body>
+</html>

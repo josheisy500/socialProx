@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+<meta charset="ISO-8859-1">
+<title>Insert Database</title>
+</head>
+<body>
+
+<script>
+function ChangeDropdowns(){
+$("#crntIntrst").change(function(){
+	   correspondingID = $(this).find(":selected").val()
+	   $(".style-sub-1").hide();
+	   $("#" + correspondingID).show();
+
+	})
+}	
+</script>
+
+
+	<form action="CreateProfile" method="POST">
+		Anon User Name: <input type="text" name="anonUsrNm" required> <br />
+		Longitude: <input type="number" name="long" step="any" > <br />
+		Latitude: <input type="number" name="lat" step="any" > <br />
+		<label>Current Interest:</label>
+		<select id="crntIntrst"  name="crntItst" >
+				<optgroup label="-Select Your Interest-"></optgroup>
+				<option value="Sport">Sport</option>
+				<option value="Food">Food</option>
+				<option value="Music">Music</option>
+		</select>
+		
+		<input type="submit"value="Submit">
+					
+	</form>
+
+</body>
+</html>
