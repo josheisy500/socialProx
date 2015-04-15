@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -49,13 +47,14 @@ public class createEvent extends HttpServlet {
 		
 		response.setContentType("text/html");  
         PrintWriter out=response.getWriter();  
-        request.getRequestDispatcher("createEvent.html").include(request, response);  
         
         HttpSession session=request.getSession(false);  
         if(session!=null){  
             String login=(String)session.getAttribute("login");
             
             out.println("hello," +login+ "Welcome to event creation");
+            request.getRequestDispatcher("createEvent.html").include(request, response);  
+
         }
         
         else {
