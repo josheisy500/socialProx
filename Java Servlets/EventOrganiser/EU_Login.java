@@ -1,6 +1,11 @@
+package com.joshua.databaseAccess;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,50 +21,69 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/eventOrg_Login")
 public class EU_Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public EU_Login() {
-        super();
-     
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public EU_Login() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        
-        String login = request.getParameter("login");
-        String pass = request.getParameter("pass");
-        
-        
-        //invoke class validate function return true or false
-        if(Validate.checkUser(login,pass))
-        {
-        	//do main menu redirect here
-        	RequestDispatcher rs = request.getRequestDispatcher("MainMenu.html");
-        	out.print("Welcome " + login);
-        	
-        	//Create Session here
-        	HttpSession session = request.getSession();
-        	session.setAttribute("login", login);
-        	rs.forward(request, response);
-        }
-        else{
-        	//do forgot password screen here
-        	out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Sorry User Name or Password Is Invalid...');");  
+		PrintWriter out = response.getWriter();
+
+		String login = request.getParameter("login");
+		String pass = request.getParameter("pass");
+
+		if (checkUser(login, pass)) {
+			// do main menu redirect here
+			RequestDispatcher rs = request
+					.getRequestDispatcher("MainMenu.html");
+			out.print("Welcome " + login);
+
+			// Create Session here
+			HttpSession session = request.getSession();
+			session.setAttribute("login", login);
+			rs.forward(request, response);
+		} else {
+			// do forgot password screen here
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Sorry User Name or Password Is Invalid...');");
 			out.println("</script>");
-			RequestDispatcher rs = request.getRequestDispatcher("eventOrg_Login.html");
-            rs.include(request, response);
-        }
-        
-        out.close();
-	
+			RequestDispatcher rs = request
+					.getRequestDispatcher("eventOrg_Login.html");
+			rs.include(request, response);
+		}
+
+		out.close();
+
+	}
+
+	private boolean checkUser(String login, String pass) {
+		boolean st = false;
+
+		try {
+			// loading drivers for mysql
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// creating connection with the database
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost/test", "root", "password");
+			PreparedStatement ps = con
+					.prepareStatement("select * from event_organisers where login=?");
+			ps.setString(1, login);
+			ResultSet rs = ps.executeQuery();
+			st = rs.next();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return st;
 	}
 }
