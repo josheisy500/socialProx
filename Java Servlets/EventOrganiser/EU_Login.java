@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -40,7 +38,7 @@ public class EU_Login extends HttpServlet {
 		String login = request.getParameter("login");
 		String pass = request.getParameter("pass");
 
-		if (checkUser(login, pass)) {
+		if (checkUserCredentials(login, pass)) {
 			// do main menu redirect here
 			RequestDispatcher rs = request
 					.getRequestDispatcher("MainMenu.html");
@@ -64,26 +62,27 @@ public class EU_Login extends HttpServlet {
 
 	}
 
-	private boolean checkUser(String login, String pass) {
+	public static boolean checkUserCredentials(String login, String pass) {
 		boolean st = false;
-
 		try {
+
 			// loading drivers for mysql
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// creating connection with the database
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://localhost/test", "root", "password");
+					"jdbc:mysql://localhost/TEST", "root", "password");
+
 			PreparedStatement ps = con
-					.prepareStatement("select * from event_organisers where login=?");
+					.prepareStatement("select * from event_organisers where login=? and password=?");
 			ps.setString(1, login);
+			ps.setString(2, pass);
 			ResultSet rs = ps.executeQuery();
-			st = rs.next();
+			st = rs.next(); // finds a match st = true
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return st;
 	}
 }
