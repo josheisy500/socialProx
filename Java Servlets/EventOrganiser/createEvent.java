@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package com.joshua.databaseAccess;
 
+=======
+>>>>>>> 3f50457aafb162ce61ef21c303e00c44b24cb4a5
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
