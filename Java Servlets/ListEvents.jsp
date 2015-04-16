@@ -7,17 +7,18 @@
 <%@ page import= "java.sql.Statement" %>
 <%@ page import= "javax.servlet.http.HttpSession" %>
 <%@ page import= "java.sql.ResultSet" %>
-<%=session.getAttribute("login")%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
+
+
+<%@ page trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <title>Your Events</title>
@@ -32,15 +33,25 @@
 </style>
 
 
+
 <div class="jumbo">
 
 </head>
 <body>
 
+<%
+	//diplay error message if no user is logged in 
+	if(session.getAttribute("login") == null){
+		out.println("<script type=\"text/javascript\">");  
+		out.println("alert('Woah! Please Login First');");  
+		out.println("</script>");
+	
+	}
+
+
+%>
 
 <body background="bg.jpg">
-
-
 	<sql:setDataSource
 		var="myDS"
 		driver="com.mysql.jdbc.Driver"
@@ -68,11 +79,13 @@
 	
 	<div align="center" style="color: #FF0000">
 		
+		<h1><%=session.getAttribute("login")%></h1>
+		<a href="MainMenu.html">Main Menu</a><br/>
+		<br>
 		<!-- Table for sport events -->
 		<table class="tftable" border="1" cellpadding="5" >
-			<style="color: #FF0000" caption><h2><%=session.getAttribute("login")%>List of events</h2></caption>
+			<style="color: #FF0000" caption><h2>Sports Events</h2></caption>
 			<tr style="color: #FF0000">
-				<th>ID</th>
 				<th>Name of Event</th>
 				<th>Longitude </th>
 				<th>Latitude </th>
@@ -80,9 +93,9 @@
 				<th>Event Photo</th>
 
 			</tr>
+			
 			<c:forEach var="sports_events" items="${listSports_events.rows}">
 				<tr>
-					<td><c:out value="${sports_events.id_sportEvents}" /></td>
 					<td><c:out value="${sports_events.name}" /></td>
 					<td><c:out value="${sports_events.longitude}" /></td>
 					<td><c:out value="${sports_events.latitude}" /></td>
@@ -95,9 +108,8 @@
 		
 		<!-- Table for food_drink events -->
 		<table class="tftable" border="1" cellpadding="5" >
-			<style="color: #FF0000" caption><h2><%=session.getAttribute("login")%>List of Food and Drinkevents</h2></caption>
+			<style="color: #FF0000" caption><h2>Food and Drink Events </h2></caption>
 			<tr style="color: #FF0000">
-				<th>ID</th>
 				<th>Name of Event</th>
 				<th>Longitude </th>
 				<th>Latitude </th>
@@ -105,9 +117,9 @@
 				<th>Event Photo</th>
 
 			</tr>
+			
 			<c:forEach var="food_drinks_events" items="${list_food_drink_events.rows}">
 				<tr>
-					<td><c:out value="${food_drinks_events.id_sportEvents}" /></td>
 					<td><c:out value="${food_drinks_events.name}" /></td>
 					<td><c:out value="${food_drinks_events.longitude}" /></td>
 					<td><c:out value="${food_drinks_events.latitude}" /></td>
@@ -120,9 +132,8 @@
 		
 		<!-- Table for music events -->
 		<table class="tftable" border="1" cellpadding="5" >
-			<style="color: #FF0000" caption><h2><%=session.getAttribute("login")%> List of Music Events</h2></caption>
+			<style="color: #FF0000" caption><h2>Music Events</h2></caption>
 			<tr style="color: #FF0000">
-				<th>ID</th>
 				<th>Name of Event</th>
 				<th>Longitude </th>
 				<th>Latitude </th>
@@ -130,9 +141,9 @@
 				<th>Event Photo</th>
 
 			</tr>
+			
 			<c:forEach var="music_events" items="${listMusic_events.rows}">
 				<tr>
-					<td><c:out value="${music_events.id_sportEvents}" /></td>
 					<td><c:out value="${music_events.name}" /></td>
 					<td><c:out value="${music_events.longitude}" /></td>
 					<td><c:out value="${music_events.latitude}" /></td>
