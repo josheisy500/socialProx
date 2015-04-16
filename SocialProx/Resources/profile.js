@@ -19,18 +19,16 @@ var tab2 = Titanium.UI.createTab({
 	window : mapWin
 });
 
+
+
 /******************      Current Behaviour      ****************** */
 
-profWin.addEventListener('androidback', function(e) {
-	//do nothing only navigation is via tabGroup
-	var win = Titanium.UI.createWindow({
-		url : 'app.js'
-	});
-	win.open();
-	profWin.close();
+var web = Ti.UI.createWebView({
+	url : 'profile.html',
 });
+profWin.add(web);
 
-//when window launches event find user  coordinates
+//when window launches event find user coordinates
 profWin.addEventListener('open', function() {
 
 	Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -48,10 +46,7 @@ profWin.addEventListener('open', function() {
 
 		Titanium.API.info('geo - current location: ' + ' long ' + longitude + ' lat ' + latitude);
 
-		var web = Ti.UI.createWebView({
-			url : 'profile.html',
-		});
-
+		//when user interacts with profile page, send coordinates to html page
 		web.addEventListener('click', function(e) {
 			Ti.App.fireEvent('app:fromTitaniumLat', {
 				latitude : latitude
@@ -60,7 +55,6 @@ profWin.addEventListener('open', function() {
 				longitude : longitude
 			});
 		});
-		profWin.add(web);
 
 	});
 
@@ -87,6 +81,15 @@ function translateErrorCode(code) {
 		return "Region monitoring setup delayed";
 	}
 }
+
+tabGroup.addEventListener('androidback', function(e) {
+	
+	if (tabGroup.activeTab.tabId == 1) {
+		tabGroup.close();
+	} else {
+		//do nothing
+	}
+});
 
 // add tabs to the group
 tabGroup.addTab(tab1);

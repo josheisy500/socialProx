@@ -1,9 +1,11 @@
+package com.joshua.databaseAccess;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -39,7 +41,7 @@ public class event_Org_Reg extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}//end doGet
+	}// end doGet
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -51,29 +53,56 @@ public class event_Org_Reg extends HttpServlet {
 		String password = request.getParameter("pass");
 		String email = request.getParameter("email");
 
-		if (Validate.checkUserName(login)) {
+		if (userNameExists(login)) {
 			// match - tell user user name already exists
-			
-			    
-			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Sorry User Name Exists, Redirecting...');");  
+
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Sorry User Name Exists, Redirecting...');");
 			out.println("</script>");
-			
-			RequestDispatcher rs = request.getRequestDispatcher("eventUserReg.html");
+
+			RequestDispatcher rs = request
+					.getRequestDispatcher("eventUserReg.html");
 			rs.include(request, response);
 		} else {
 			addUser(login, password, email);
-			
-			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Succesful Sign Up, Redirecting To Login Page....');");  
+
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Succesful Sign Up, Redirecting To Login Page....');");
 			out.println("</script>");
-			
-			RequestDispatcher rs = request.getRequestDispatcher("eventOrg_Login.html");
+
+			RequestDispatcher rs = request
+					.getRequestDispatcher("eventOrg_Login.html");
 			rs.include(request, response);
 
 		}
-	}//end doPost
-	
+
+	}// end doPost
+
+	private boolean userNameExists(String login) {
+		// function to see if user name exists in registered database
+		boolean st = false;
+
+		try {
+			// loading drivers for mysql
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// creating connection with the database
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost/test", "root", "password");
+			PreparedStatement ps = con
+					.prepareStatement("select * from event_organisers where login=?");
+			ps.setString(1, login);
+			ResultSet rs = ps.executeQuery();
+			st = rs.next();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return st;
+
+	}
+
 	private void addUser(String login, String password, String email) {
 		// function to add event organiser to database
 		try {

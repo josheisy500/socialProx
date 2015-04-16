@@ -1,4 +1,4 @@
-
+package com.joshua.databaseAccess;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,6 +38,8 @@ public class createEvent extends HttpServlet {
 
 	Connection conn;
 	Statement stmt;
+	
+	String createdBy; //variable to hold session log in 
 
 	public createEvent() {
 		super();
@@ -49,20 +51,20 @@ public class createEvent extends HttpServlet {
 		
 		response.setContentType("text/html");  
         PrintWriter out=response.getWriter();  
-        //request.getRequestDispatcher("link.html").include(request, response);  
         
         HttpSession session=request.getSession(false);  
         if(session!=null){  
             String login=(String)session.getAttribute("login");
             
             out.println("hello," +login+ "Welcome to event creation");
+            request.getRequestDispatcher("createEvent.html").include(request, response);  
+
         }
         
         else {
         	out.println("<script type=\"text/javascript\">");  
 			out.println("alert('Woah! Please Login First');");  
 			out.println("</script>");
-        	//out.print("Please login first");  
         	request.getRequestDispatcher("eventOrg_Login.html").include(request, response);
         }
         out.close();
@@ -71,6 +73,12 @@ public class createEvent extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session=request.getSession(false);  
+        if(session!=null){  
+            String login=(String)session.getAttribute("login");
+            createdBy = login;
+        }
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -96,7 +104,8 @@ public class createEvent extends HttpServlet {
 		}
 
 		//function to add event to database
-		addEvent(eventName, date, longitude, latitude, eventType, inputStream);
+		//System.out.println(date);
+		addEvent(eventName, date, longitude, latitude, eventType, inputStream, createdBy);
 		
 		//do forgot password screen here
     	out.println("<script type=\"text/javascript\">");  
@@ -109,7 +118,7 @@ public class createEvent extends HttpServlet {
 	}
 
 	private void addEvent(String eventName, String date, String longitude,
-			String latitude, String eventType, InputStream inputStream) {
+			String latitude, String eventType, InputStream inputStream, String createdBy) {
 
 		String message = null;
 		try {
@@ -121,7 +130,7 @@ public class createEvent extends HttpServlet {
 
 			//insert event into sports_event database
 			if (eventType.equals("sports")) {
-				String sql = "INSERT INTO sports_events (name, longitude, latitude, date, event_photo) values (?,?,?,?,?)";
+				String sql = "INSERT INTO sports_events (name, longitude, latitude, date, event_photo, createdBy) values (?,?,?,?,?,?)";
 				PreparedStatement statement = conn.prepareStatement(sql);
 				statement.setString(1, eventName);
 				statement.setString(2, longitude);
@@ -133,6 +142,7 @@ public class createEvent extends HttpServlet {
 					// fetches input stream of the upload file for the blob // column
 					statement.setBlob(5, inputStream);
 				}
+				statement.setString(6, createdBy);
 
 				// sends the statement to the database server
 				int row = statement.executeUpdate();
@@ -143,7 +153,7 @@ public class createEvent extends HttpServlet {
 			
 			//insert event into food_drink database
 			else if(eventType.equals("food_drink")){
-				String sql = "INSERT INTO food_drink_events (name, longitude, latitude, date, event_photo) values (?,?,?,?,?)";
+				String sql = "INSERT INTO food_drink_events (name, longitude, latitude, date, event_photo, createdBy) values (?,?,?,?,?,?)";
 				PreparedStatement statement = conn.prepareStatement(sql);
 				statement.setString(1, eventName);
 				statement.setString(2, longitude);
@@ -156,6 +166,7 @@ public class createEvent extends HttpServlet {
 					// column
 					statement.setBlob(5, inputStream);
 				}
+				statement.setString(6, createdBy);
 
 				// sends the statement to the database server
 				int row = statement.executeUpdate();
@@ -167,7 +178,7 @@ public class createEvent extends HttpServlet {
 			
 			//insert event into music_events database
 			else{
-				String sql = "INSERT INTO music_events (name, longitude, latitude, date, event_photo) values (?,?,?,?,?)";
+				String sql = "INSERT INTO music_events (name, longitude, latitude, date, event_photo, createdBy) values (?,?,?,?,?,?)";
 				PreparedStatement statement = conn.prepareStatement(sql);
 				statement.setString(1, eventName);
 				statement.setString(2, longitude);
@@ -180,6 +191,8 @@ public class createEvent extends HttpServlet {
 					// column
 					statement.setBlob(5, inputStream);
 				}
+				
+				statement.setString(6, createdBy);
 
 				// sends the statement to the database server
 				int row = statement.executeUpdate();

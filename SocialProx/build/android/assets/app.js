@@ -5,6 +5,7 @@ var win = Titanium.UI.createWindow({
 	backgroundImage : 'bg.jpg',
 });
 
+//button for guest login 
 var button = Ti.UI.createButton({
 	title : 'Try As A Guest',
 	top : '50dp'
@@ -42,6 +43,11 @@ function updateLoginStatus() {
 
 }
 
+win.addEventListener('androidback', function(e) {
+	facebook.addEventListener('logout', updateLoginStatus);
+	win.close();
+});
+
 facebook.addEventListener('login', updateLoginStatus);
 facebook.addEventListener('logout', updateLoginStatus);
 
@@ -49,5 +55,7 @@ win.add(facebook.createLoginButton({
 	style : facebook.BUTTON_STYLE_WIDE,
 	top : 100
 }));
+
+
 
 win.open();
