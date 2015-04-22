@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -86,10 +87,25 @@ public class displayEvents extends HttpServlet {
 					"transitional//en\">\n";
 					out.println(docType +
 							"<html>\n" +
-							"<h1 align=\"center\">"+ login + " Created Events</h1>\n" +
-							"<table border=\"10\" align=\"center\">\n" +
-							 "<tr bgcolor=\"#949494\">\n" +
-							 "<th>Sports Events</th>" +
+							"<a href=MainMenu.html>Main Menu</a>"+
+							"<head>\n"+
+							"<link rel=stylesheet href=http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css>"+
+							"<div class=jumbo>"+
+							
+							
+							"<style type=text/css>" +
+							".tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}" +
+							".tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}"+
+							".tftable tr {background-color:#d4e3e5;}"+
+							".tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}"+
+							".tftable tr:hover {background-color:#ffffff;}"+
+							"</style>"+
+							
+							
+							"<div align=center style=color: #FF0000>"+
+							"<h1 align=\"center\">Welcome " + login + "<br> Here Are Your Created Events</br></h1>\n" +
+							"<table class=tftable  align=\"center\">\n" +
+							 "<th>Sports Events</th>\n" +
 							 "<tr>\n" +
 				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
 				             + "</tr>\n" +
@@ -155,9 +171,17 @@ public class displayEvents extends HttpServlet {
 					"transitional//en\">\n";
 					out.println(docType +
 							"<html>\n" +
-							"<table border=\"10\" align=\"center\">\n" +
-							 "<tr bgcolor=\"#949494\">\n" +
-							 "<th>Music Events</th></br>" +
+							"<style type=text/css>" +
+							".tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}" +
+							".tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}"+
+							".tftable tr {background-color:#d4e3e5;}"+
+							".tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}"+
+							".tftable tr:hover {background-color:#ffffff;}"+
+							"</style>"+
+							
+							"<table class=tftable  align=\"center\">\n" +
+							 
+							"<th>Music Events</th></br>" +
 							 "<tr>\n" +
 				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
 				             + "</tr>\n" +
@@ -224,8 +248,16 @@ public class displayEvents extends HttpServlet {
 					"transitional//en\">\n";
 					out.println(docType +
 							"<html>\n" +
-							"<table border=\"10\" align=\"center\">\n" +
-							 "<tr bgcolor=\"#949494\">\n" +
+							"<style type=text/css>" +
+							".tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}" +
+							".tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}"+
+							".tftable tr {background-color:#d4e3e5;}"+
+							".tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}"+
+							".tftable tr:hover {background-color:#ffffff;}"+
+							"</style>"+
+							
+							"<table class=tftable  align=\"center\">\n" +
+							 
 							 "<th>Food & Drink Events</th></br>" +
 							 "<tr>\n" +
 				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
