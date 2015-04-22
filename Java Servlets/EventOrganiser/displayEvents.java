@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -87,8 +86,13 @@ public class displayEvents extends HttpServlet {
 					"transitional//en\">\n";
 					out.println(docType +
 							"<html>\n" +
-							"<h1 align=\"center\">"+ login + " Created Sports Events</h1>\n" +
-							
+							"<h1 align=\"center\">"+ login + " Created Events</h1>\n" +
+							"<table border=\"10\" align=\"center\">\n" +
+							 "<tr bgcolor=\"#949494\">\n" +
+							 "<th>Sports Events</th>" +
+							 "<tr>\n" +
+				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
+				             + "</tr>\n" +
 							"</body></html>");
 			while(rs.next()){
 				String docType1 =
@@ -96,11 +100,6 @@ public class displayEvents extends HttpServlet {
 				"transitional//en\">\n";
 				out.println(docType1 +
 						"<html>\n" +
-						"<table border=\"1\" align=\"center\">\n" +
-						 "<tr bgcolor=\"#949494\">\n" +
-			             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
-			             + "</tr>\n" +
-			 
 			             "<tr>\n" +
 			             "<td>" + rs.getString(2) + "</td>\n" +  
 			             "<td>" + rs.getString(3) + "</td>\n" +
@@ -150,18 +149,26 @@ public class displayEvents extends HttpServlet {
 			ps.setString(1, login);
 			ResultSet rs = ps.executeQuery();
 			
-			
+			//html 
+			String docType =
+					"<!doctype html public \"-//w3c//dtd html 4.0 " +
+					"transitional//en\">\n";
+					out.println(docType +
+							"<html>\n" +
+							"<table border=\"10\" align=\"center\">\n" +
+							 "<tr bgcolor=\"#949494\">\n" +
+							 "<th>Music Events</th></br>" +
+							 "<tr>\n" +
+				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
+				             + "</tr>\n" +
+							"</body></html>");
 			while(rs.next()){
 				String docType1 =
 				"<!doctype html public \"-//w3c//dtd html 4.0 " +
 				"transitional//en\">\n";
 				out.println(docType1 +
 						"<html>\n" +
-						"<table border=\"1\" align=\"center\">\n" +
-						 "<tr bgcolor=\"#949494\">\n" +
-			             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
-			             + "</tr>\n" +
-						"<h1 align=\"center\">"+ login + " Created Music Events</h1>\n" +
+						
 			             "<tr>\n" +
 			             "<td>" + rs.getString(2) + "</td>\n" +  
 			             "<td>" + rs.getString(3) + "</td>\n" +
@@ -203,8 +210,6 @@ public class displayEvents extends HttpServlet {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			// Open a connection
-			//conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			
 			conn = conn2;
 			
@@ -213,18 +218,26 @@ public class displayEvents extends HttpServlet {
 			ps.setString(1, login);
 			ResultSet rs = ps.executeQuery();
 			
-			
+			//html 
+			String docType =
+					"<!doctype html public \"-//w3c//dtd html 4.0 " +
+					"transitional//en\">\n";
+					out.println(docType +
+							"<html>\n" +
+							"<table border=\"10\" align=\"center\">\n" +
+							 "<tr bgcolor=\"#949494\">\n" +
+							 "<th>Food & Drink Events</th></br>" +
+							 "<tr>\n" +
+				             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
+				             + "</tr>\n" +
+							"</body></html>");
 			while(rs.next()){
 				String docType1 =
 				"<!doctype html public \"-//w3c//dtd html 4.0 " +
 				"transitional//en\">\n";
 				out.println(docType1 +
 						"<html>\n" +
-						"<table border=\"1\" align=\"center\">\n" +
-						 "<tr bgcolor=\"#949494\">\n" +
-			             "<th>Name of Event</th><th>Longitude</th><th>Latitude</th><th>Date</th>"
-			             + "</tr>\n" +
-			             "<h1 align=\"center\">"+ login + " Created Food & Drink Events</h1>\n" +
+						
 			             "<tr>\n" +
 			             "<td>" + rs.getString(2) + "</td>\n" +  
 			             "<td>" + rs.getString(3) + "</td>\n" +
